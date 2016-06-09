@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">AliadaTest</string>
     <string name="txt_login_user">Email:</string>
     <string name="txt_login_password">Password</string>
     <string name="btn_login">LOGIN</string>
+
+    <string name="error_login_invalid_form">Debes completar correctamente el formulario</string>
 </resources>
