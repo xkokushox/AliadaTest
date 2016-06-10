@@ -24,12 +24,15 @@
             android:text="@string/txt_login_user" />
 
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/editTextId"
+            style="@style/TxtLogInPassword"
+            android:text="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/editTextPassword"
+            android:text="feliciana"
             style="@style/TxtLogInPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

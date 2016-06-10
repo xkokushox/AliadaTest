@@ -1,6 +1,7 @@
 package com.freakybyte.aliadatest.util;
 
 import android.content.res.Resources;
+import android.os.Build;
 import android.util.TypedValue;
 
 import com.freakybyte.aliadatest.TestApplication;
@@ -25,7 +26,22 @@ public class AndroidUtil {
         return sText != null && !sText.trim().isEmpty();
     }
 
+    public static boolean isValidInteger(String sText) {
+        if (!isValidField(sText))
+            return false;
+        else {
+            return sText.matches("\\d+");
+        }
+    }
+
     public static boolean isEmailValid(String email) {
         return isValidField(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    public static boolean isHoneyComb() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+            return true;
+        else
+            return false;
     }
 }

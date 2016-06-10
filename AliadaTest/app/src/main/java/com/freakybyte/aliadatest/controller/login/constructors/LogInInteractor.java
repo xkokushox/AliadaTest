@@ -7,7 +7,7 @@ import com.freakybyte.aliadatest.controller.login.listener.OnRequestLogInListene
  */
 public interface LogInInteractor {
 
-    void logInInServer(OnRequestLogInListener mListener);
+    void logInInServer(OnRequestLogInListener mListener, String id, String password);
 
-    boolean validateLogInForm(String email, String password);
+    boolean validateLogInForm(String id, String password);
 }

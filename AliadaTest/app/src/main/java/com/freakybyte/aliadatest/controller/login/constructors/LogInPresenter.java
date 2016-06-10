@@ -5,7 +5,7 @@ package com.freakybyte.aliadatest.controller.login.constructors;
  */
 public interface LogInPresenter {
 
-    void onLogIn(String email, String password);
+    void onLogIn(String id, String password);
 
     void onDestroy();
 }

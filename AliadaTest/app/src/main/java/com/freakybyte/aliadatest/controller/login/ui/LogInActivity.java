@@ -1,5 +1,6 @@
 package com.freakybyte.aliadatest.controller.login.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,13 +12,16 @@ import com.freakybyte.aliadatest.controller.dialog.ProgressDialog;
 import com.freakybyte.aliadatest.controller.login.constructors.LogInPresenter;
 import com.freakybyte.aliadatest.controller.login.constructors.LogInView;
 import com.freakybyte.aliadatest.controller.login.impl.LogInPresenterImpl;
+import com.freakybyte.aliadatest.controller.services.ui.ServicesActivity;
+import com.freakybyte.aliadatest.util.AndroidUtil;
 import com.freakybyte.aliadatest.util.DebugUtils;
+import com.freakybyte.aliadatest.util.WidgetUtils;
 
 public class LogInActivity extends MainActivity implements LogInView, View.OnClickListener {
 
     private static final String TAG = "LogInActivity";
 
-    private EditText editTextEmail;
+    private EditText editTextId;
     private EditText editTextPassword;
     private Button btnLogIn;
 
@@ -31,6 +35,14 @@ public class LogInActivity extends MainActivity implements LogInView, View.OnCli
         setContentView(R.layout.activity_log_in);
 
         getBtnLogIn().setOnClickListener(LogInActivity.this);
+
+        if (!AndroidUtil.isHoneyComb()) {
+            getEditTextId().setTextColor(getResources().getColor(R.color.black));
+            getEditTextId().setHintTextColor(getResources().getColor(R.color.black_60));
+            getEditTextPassword().setTextColor(getResources().getColor(R.color.black));
+            getEditTextPassword().setHintTextColor(getResources().getColor(R.color.black_60));
+        }
+
     }
 
     @Override
@@ -60,19 +72,22 @@ public class LogInActivity extends MainActivity implements LogInView, View.OnCli
 
     @Override
     public void onLogInSuccess() {
-
+        Intent iPhoneNumber = new Intent(LogInActivity.this, ServicesActivity.class);
+        iPhoneNumber.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(iPhoneNumber);
+        finish();
     }
 
     @Override
     public void onErrorLoading() {
-
+        WidgetUtils.createShortToast(R.string.error_login_server);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnLogIn:
-                getPresenter().onLogIn(getEditTextEmail().getText().toString(), getEditTextPassword().getText().toString());
+                getPresenter().onLogIn(getEditTextId().getText().toString(), getEditTextPassword().getText().toString());
                 break;
             default:
                 DebugUtils.logError(TAG, "Unknown View:: " + v.getId());
@@ -84,6 +99,8 @@ public class LogInActivity extends MainActivity implements LogInView, View.OnCli
     protected void onDestroy() {
         super.onDestroy();
         getPresenter().onDestroy();
+        mLoaderDialog = null;
+        mPresenter = null;
     }
 
     private LogInPresenter getPresenter() {
@@ -93,11 +110,11 @@ public class LogInActivity extends MainActivity implements LogInView, View.OnCli
         return mPresenter;
     }
 
-    private EditText getEditTextEmail() {
-        if (editTextEmail == null)
-            editTextEmail = (EditText) findViewById(R.id.editTextEmail);
+    private EditText getEditTextId() {
+        if (editTextId == null)
+            editTextId = (EditText) findViewById(R.id.editTextId);
 
-        return editTextEmail;
+        return editTextId;
     }
 
     private EditText getEditTextPassword() {
