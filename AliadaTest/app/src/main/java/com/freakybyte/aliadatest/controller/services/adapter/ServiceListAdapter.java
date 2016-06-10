@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.freakybyte.aliadatest.R;
 import com.freakybyte.aliadatest.model.services.ServiceItemModel;
 import com.freakybyte.aliadatest.ui.wrapper.ItemServiceWrapper;
+import com.freakybyte.aliadatest.util.AliadaUtil;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,23 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ItemServiceWrapper>
     @Override
     public void onBindViewHolder(ItemServiceWrapper viewHolder, final int position) {
         final ServiceItemModel mService = getListServices().get(position);
+
+        viewHolder.getTxtServiceHour().setText(String.format(mActivity.getString(R.string.txt_service_item_hours), mService.getEstimatedHours()));
+        viewHolder.getTxtServiceDate().setText(String.format(mActivity.getString(R.string.txt_service_item_special_date), AliadaUtil.getDateFromString(mService.getDatetime()),
+                AliadaUtil.getDateFromString(mService.getEndingDatetime())));
+        viewHolder.getTxtServiceSpecialInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_special_instructions), mService.getSpecialInstructions()));
+        viewHolder.getTxtServiceGarbageInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_garbage_instructions), mService.getGarbageInstructions()));
+        viewHolder.getTxtServiceEquipmentInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_equipment_instructions), mService.getEquipmentInstructions()));
+        viewHolder.getTxtServiceForbiddenInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_forbidden_instructions), mService.getForbiddenInstructions()));
+        viewHolder.getTxtServiceSuppliesInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_cleaning_supplies_instructions), mService.getCleaningSuppliesInstructions()));
+        viewHolder.getTxtServiceAtentionInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_attention_instructions), mService.getAttentionInstructions()));
+
+        viewHolder.getTxtServiceAddress().setText(String.format(mActivity.getString(R.string.txt_service_item_direction), mService.getAddress().getStreet(), mService.getAddress().getNumber()
+                , mService.getAddress().getInteriorNumber(), mService.getAddress().getColony(), mService.getAddress().getCity(), mService.getAddress().getPostalCode().getNumber()));
+
+
+        viewHolder.getTxtServiceUser().setText(String.format(mActivity.getString(R.string.txt_service_item_user_name), mService.getUser().getFullName()));
+        viewHolder.getTxtServicePhone().setText(String.format(mActivity.getString(R.string.txt_service_item_user_phone), mService.getUser().getPhone()));
 
     }
 

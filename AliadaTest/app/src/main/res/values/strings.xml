@@ -15,8 +15,11 @@
     <string name="txt_service_item_forbidden_instructions">Instrucciones de Prohibición: %s</string>
     <string name="txt_service_item_cleaning_supplies_instructions">Instrucciones de Elementos de Limpieza: %s</string>
     <string name="txt_service_item_attention_instructions">Instrucciones: %s</string>
-    <string name="txt_service_item_direction">Dirección</string>
+    <string name="txt_service_item_address">Dirección:</string>
+    <string name="txt_service_item_direction">Calle %1$s, No %2$s, Int %3$s, Col %4$s, Ciudad %5$s, C.P %6$s</string>
     <string name="txt_service_item_user">Usuario</string>
+    <string name="txt_service_item_user_name">Nombre: %s</string>
+    <string name="txt_service_item_user_phone">Teléfono: %s</string>
     <string name="txt_service_item_service">Servicio</string>
 
 

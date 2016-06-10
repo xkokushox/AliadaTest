@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/txt_service_item_hours" />
 
-                <com.freakybyte.aliadatest.ui.textview.AutoFitTxtView
+                <TextView
                     android:id="@+id/txtServiceDate"
                     style="@style/TxtServicesItemDetail"
                     android:layout_width="match_parent"
@@ -83,14 +83,14 @@
                     style="@style/TxtServicesItemDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/txt_service_item_garbage_instructions" />
+                    android:text="@string/txt_service_item_equipment_instructions" />
 
                 <TextView
                     android:id="@+id/txtServiceForbiddenInstructions"
                     style="@style/TxtServicesItemDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/txt_service_item_garbage_instructions" />
+                    android:text="@string/txt_service_item_forbidden_instructions" />
 
                 <TextView
                     android:id="@+id/txtServiceSuppliesInstructions"
@@ -124,16 +124,24 @@
                     style="@style/TxtServicesItemCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/txt_service_item_direction" />
+                    android:text="@string/txt_service_item_address" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtServiceAddress"
-                style="@style/TxtServicesItemDetail"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Abandonado #250" />
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtServiceAddress"
+                    style="@style/TxtServicesItemDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_service_item_direction" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -154,13 +162,27 @@
                     android:text="@string/txt_service_item_user" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtServiceUser"
-                style="@style/TxtServicesItemDetail"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Kokusho Torres" />
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtServiceUser"
+                    style="@style/TxtServicesItemDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_service_item_user_name" />
+
+                <TextView
+                    android:id="@+id/txtServicePhone"
+                    style="@style/TxtServicesItemDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_service_item_user_phone" />
+            </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </FrameLayout>
