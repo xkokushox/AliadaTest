@@ -1,7 +1,25 @@
 <resources>
     <string name="txt_login_user">Email:</string>
     <string name="txt_login_password">Password</string>
-    <string name="btn_login">LOGIN</string>
+    <string name="btn_login">INGRESO</string>
+
+    <string name="txt_progress_loader_label">Cargando....</string>
+    <string name="txt_session_subtitle">Servicios</string>
+    <string name="txt_services_empty_list">La alidada no tiene servicios actualmente, desliza hacia abajo para actualiar</string>
+
+    <string name="txt_service_item_hours">Horas: %s</string>
+    <string name="txt_service_item_special_date">Empieza: %1$s Termina: %2$s</string>
+    <string name="txt_service_item_special_instructions">Instrucciones Especiales: %s</string>
+    <string name="txt_service_item_garbage_instructions">Instrucciones de Basura: %s</string>
+    <string name="txt_service_item_equipment_instructions">Instrucciones de Equipo: %s</string>
+    <string name="txt_service_item_forbidden_instructions">Instrucciones de Prohibición: %s</string>
+    <string name="txt_service_item_cleaning_supplies_instructions">Instrucciones de Elementos de Limpieza: %s</string>
+    <string name="txt_service_item_attention_instructions">Instrucciones: %s</string>
+    <string name="txt_service_item_direction">Dirección</string>
+    <string name="txt_service_item_user">Usuario</string>
+    <string name="txt_service_item_service">Servicio</string>
 
     <string name="error_login_invalid_form">Debes completar correctamente el formulario</string>
+    <string name="error_login_server">No se pudo autenticar el usuario, intenta nuevamente</string>
+    <string name="error_service_retrieve">No se pudo descargar la información, intenta nuevamente</string>
 </resources>
