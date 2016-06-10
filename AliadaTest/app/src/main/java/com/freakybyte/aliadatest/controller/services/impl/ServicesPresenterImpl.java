@@ -6,6 +6,7 @@ import com.freakybyte.aliadatest.controller.services.constructors.ServicesPresen
 import com.freakybyte.aliadatest.controller.services.constructors.ServicesView;
 import com.freakybyte.aliadatest.controller.services.listener.OnRequestItemsListener;
 import com.freakybyte.aliadatest.model.services.ServiceItemModel;
+import com.freakybyte.aliadatest.util.WidgetUtils;
 
 import java.util.List;
 
@@ -56,6 +57,9 @@ public class ServicesPresenterImpl implements ServicesPresenter, OnRequestItemsL
 
     @Override
     public void onRequestFailed() {
+        if (mServicesView == null)
+            return;
+
         mServicesView.onErrorLoading();
         mServicesView.refreshAdapter();
         mServicesView.hideLoader();
@@ -63,6 +67,9 @@ public class ServicesPresenterImpl implements ServicesPresenter, OnRequestItemsL
 
     @Override
     public void onRequestSuccess(List<ServiceItemModel> mList) {
+        if (mServicesView == null)
+            return;
+
         mServicesView.fillAdapter(mList);
         mServicesView.refreshAdapter();
         mServicesView.hideLoader();
@@ -70,9 +77,21 @@ public class ServicesPresenterImpl implements ServicesPresenter, OnRequestItemsL
 
     @Override
     public void onRequestMoreData(List<ServiceItemModel> mList) {
+        if (mServicesView == null)
+            return;
+
         mServicesView.addNewItemsToAdapter(mList);
         mServicesView.refreshAdapter();
         mServicesView.hideLoader();
+    }
+
+    @Override
+    public void onAuthenticationFailure() {
+        if (mServicesView == null)
+            return;
+
+        WidgetUtils.createShortToast(R.string.error_problem_authentication);
+        mServicesView.onLogOut();
     }
 
 }

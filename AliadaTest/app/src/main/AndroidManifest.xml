@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AliadaTheme">
         <activity
-            android:name=".controller.login.ui.LogInActivity"
+            android:name=".controller.splash.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +22,9 @@
         </activity>
         <activity
             android:name=".controller.services.ui.ServicesActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".controller.login.ui.LogInActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

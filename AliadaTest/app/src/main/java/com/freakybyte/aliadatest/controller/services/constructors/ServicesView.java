@@ -19,5 +19,7 @@ public interface ServicesView {
 
     void refreshAdapter();
 
+    void onLogOut();
+
     void onErrorLoading();
 }

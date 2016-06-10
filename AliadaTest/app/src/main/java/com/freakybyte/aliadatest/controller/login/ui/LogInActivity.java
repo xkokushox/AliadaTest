@@ -72,9 +72,9 @@ public class LogInActivity extends MainActivity implements LogInView, View.OnCli
 
     @Override
     public void onLogInSuccess() {
-        Intent iPhoneNumber = new Intent(LogInActivity.this, ServicesActivity.class);
-        iPhoneNumber.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(iPhoneNumber);
+        Intent mIntentServices = new Intent(LogInActivity.this, ServicesActivity.class);
+        mIntentServices.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(mIntentServices);
         finish();
     }
 

@@ -15,4 +15,6 @@ public interface OnRequestItemsListener {
 
     void onRequestMoreData(List<ServiceItemModel> mList);
 
+    void onAuthenticationFailure();
+
 }

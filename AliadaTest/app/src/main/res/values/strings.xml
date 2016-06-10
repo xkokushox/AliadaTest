@@ -19,7 +19,15 @@
     <string name="txt_service_item_user">Usuario</string>
     <string name="txt_service_item_service">Servicio</string>
 
+
+    <string name="txt_dialog_yes">Si</string>
+    <string name="txt_dialog_no">No</string>
+    <string name="txt_dialog_title_logout">Cerrar Sesión</string>
+    <string name="txt_dialog_body_logout">Estas segura de que deseas cerrar tu sesión?</string>
+
+
     <string name="error_login_invalid_form">Debes completar correctamente el formulario</string>
     <string name="error_login_server">No se pudo autenticar el usuario, intenta nuevamente</string>
     <string name="error_service_retrieve">No se pudo descargar la información, intenta nuevamente</string>
+    <string name="error_problem_authentication">Hubo un error de seguridad, tendrás que ingresar de nuevo tus datos</string>
 </resources>

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.freakybyte.aliadatest.R;
 import com.freakybyte.aliadatest.controller.MainActivity;
+import com.freakybyte.aliadatest.controller.dialog.LogOutDialog;
 import com.freakybyte.aliadatest.controller.dialog.ProgressDialog;
 import com.freakybyte.aliadatest.controller.login.ui.LogInActivity;
 import com.freakybyte.aliadatest.controller.services.adapter.ServiceListAdapter;
@@ -37,8 +38,10 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
     private TextView txtToolbarTitle;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ImageView menuItemLogOut;
-    private ProgressDialog mLoaderDialog;
     private Toolbar mToolbar;
+
+    private ProgressDialog mLoaderDialog;
+    private LogOutDialog mLogOutDialog;
 
     private ServiceListAdapter mAdapter;
 
@@ -90,6 +93,22 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
         iPage = 1;
 
         mPresenter.getItems();
+    }
+
+    public void onLogoutPressed() {
+        DebugUtils.logDebug(TAG, "onLogoutPressed");
+
+        if (mLogOutDialog == null || !mLogOutDialog.isShowing()) {
+            mLogOutDialog = new LogOutDialog(ServicesActivity.this, getString(R.string.txt_dialog_title_logout), getString(R.string.txt_dialog_body_logout));
+            mLogOutDialog.addAcceptButton(getString(R.string.txt_dialog_yes), new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onLogOut();
+                }
+            });
+            mLogOutDialog.addCancelButton(getString(R.string.txt_dialog_no), null);
+            mLogOutDialog.show();
+        }
     }
 
 
@@ -146,6 +165,15 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
     }
 
     @Override
+    public void onLogOut() {
+        SharedPreferencesUtil.setAppPreference(SharedPreferencesUtil.USER_TOKEN, "");
+        Intent mIntentLogIn = new Intent(ServicesActivity.this, LogInActivity.class);
+        mIntentLogIn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(mIntentLogIn);
+        finish();
+    }
+
+    @Override
     public void onErrorLoading() {
         WidgetUtils.createShortToast(R.string.error_service_retrieve);
     }
@@ -154,11 +182,7 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.menuItemLogOut:
-                SharedPreferencesUtil.setAppPreference(SharedPreferencesUtil.USER_TOKEN, "");
-                Intent iPhoneNumber = new Intent(ServicesActivity.this, LogInActivity.class);
-                iPhoneNumber.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(iPhoneNumber);
-                finish();
+                onLogoutPressed();
                 break;
             default:
                 DebugUtils.logError(TAG, "Unknown View:: " + v.getId());

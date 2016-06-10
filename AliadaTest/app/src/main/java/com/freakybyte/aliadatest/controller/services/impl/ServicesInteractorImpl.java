@@ -40,6 +40,9 @@ public class ServicesInteractorImpl implements ServicesInteractor {
                         else
                             mListener.onRequestMoreData(mService.getServices());
                         break;
+                    case 401:
+                        mListener.onAuthenticationFailure();
+                        break;
                     default:
                         DebugUtils.logError("GetItemsFromServer:: Error Code:: " + response.code());
                         mListener.onRequestFailed();
