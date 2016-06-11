@@ -32,11 +32,7 @@ public class LogInInteractorImpl implements LogInInteractor {
 
         Map<String, String> params = new HashMap<>();
 
-        if (AndroidUtil.isEmailValid(id))
-            params.put("email", id);
-        else
-            params.put("aliada_id", id);
-
+        params.put(AndroidUtil.isEmailValid(id) ? "email" : "aliada_id", id);
         params.put("password", password);
 
         DebugUtils.logDebug(TAG, "Params:: " + params.toString());
