@@ -55,6 +55,7 @@ public class SplashActivity extends MainActivity implements SplashView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPresenter.onDestroy();
+        if (mPresenter != null)
+            mPresenter.onDestroy();
     }
 }
