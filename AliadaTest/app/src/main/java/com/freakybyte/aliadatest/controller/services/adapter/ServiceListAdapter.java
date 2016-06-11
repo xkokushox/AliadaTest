@@ -37,26 +37,68 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ItemServiceWrapper>
     }
 
     @Override
-    public void onBindViewHolder(ItemServiceWrapper viewHolder, final int position) {
+    public void onBindViewHolder(final ItemServiceWrapper viewHolder, final int position) {
         final ServiceItemModel mService = getListServices().get(position);
 
-        viewHolder.getTxtServiceHour().setText(String.format(mActivity.getString(R.string.txt_service_item_hours), mService.getEstimatedHours()));
+        if (AliadaUtil.isInValiedField(mService.getEstimatedHours()))
+            viewHolder.getTxtServiceHour().setVisibility(View.GONE);
+        else {
+            viewHolder.getTxtServiceHour().setVisibility(View.VISIBLE);
+            viewHolder.getTxtServiceHour().setText(String.format(mActivity.getString(R.string.txt_service_item_hours), mService.getEstimatedHours()));
+        }
+
         viewHolder.getTxtServiceDate().setText(String.format(mActivity.getString(R.string.txt_service_item_special_date), AliadaUtil.getDateFromString(mService.getDatetime()),
                 AliadaUtil.getDateFromString(mService.getEndingDatetime())));
-        viewHolder.getTxtServiceSpecialInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_special_instructions), mService.getSpecialInstructions()));
-        viewHolder.getTxtServiceGarbageInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_garbage_instructions), mService.getGarbageInstructions()));
-        viewHolder.getTxtServiceEquipmentInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_equipment_instructions), mService.getEquipmentInstructions()));
-        viewHolder.getTxtServiceForbiddenInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_forbidden_instructions), mService.getForbiddenInstructions()));
-        viewHolder.getTxtServiceSuppliesInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_cleaning_supplies_instructions), mService.getCleaningSuppliesInstructions()));
-        viewHolder.getTxtServiceAtentionInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_attention_instructions), mService.getAttentionInstructions()));
+
+        if (AliadaUtil.isInValiedField(mService.getSpecialInstructions()))
+            viewHolder.getTxtServiceSpecialInstructions().setVisibility(View.GONE);
+        else {
+            viewHolder.getTxtServiceSpecialInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_special_instructions), mService.getSpecialInstructions()));
+            viewHolder.getTxtServiceSpecialInstructions().setVisibility(View.VISIBLE);
+        }
+
+        if (AliadaUtil.isInValiedField(mService.getGarbageInstructions()))
+            viewHolder.getTxtServiceGarbageInstructions().setVisibility(View.GONE);
+        else {
+            viewHolder.getTxtServiceGarbageInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_garbage_instructions), mService.getGarbageInstructions()));
+            viewHolder.getTxtServiceGarbageInstructions().setVisibility(View.VISIBLE);
+        }
+
+        if (AliadaUtil.isInValiedField(mService.getEquipmentInstructions()))
+            viewHolder.getTxtServiceEquipmentInstructions().setVisibility(View.GONE);
+        else {
+            viewHolder.getTxtServiceEquipmentInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_equipment_instructions), mService.getEquipmentInstructions()));
+            viewHolder.getTxtServiceEquipmentInstructions().setVisibility(View.VISIBLE);
+        }
+
+        if (AliadaUtil.isInValiedField(mService.getForbiddenInstructions()))
+            viewHolder.getTxtServiceForbiddenInstructions().setVisibility(View.GONE);
+        else {
+            viewHolder.getTxtServiceForbiddenInstructions().setVisibility(View.VISIBLE);
+            viewHolder.getTxtServiceForbiddenInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_forbidden_instructions), mService.getForbiddenInstructions()));
+        }
+
+        if (AliadaUtil.isInValiedField(mService.getCleaningSuppliesInstructions()))
+            viewHolder.getTxtServiceSuppliesInstructions().setVisibility(View.GONE);
+        else {
+            viewHolder.getTxtServiceSuppliesInstructions().setVisibility(View.VISIBLE);
+            viewHolder.getTxtServiceSuppliesInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_cleaning_supplies_instructions), mService.getCleaningSuppliesInstructions()));
+        }
+
+        if (AliadaUtil.isInValiedField(mService.getAttentionInstructions()))
+            viewHolder.getTxtServiceAtentionInstructions().setVisibility(View.GONE);
+        else {
+            viewHolder.getTxtServiceAtentionInstructions().setVisibility(View.VISIBLE);
+            viewHolder.getTxtServiceAtentionInstructions().setText(String.format(mActivity.getString(R.string.txt_service_item_attention_instructions), mService.getAttentionInstructions()));
+        }
 
         viewHolder.getTxtServiceAddress().setText(String.format(mActivity.getString(R.string.txt_service_item_direction), mService.getAddress().getStreet(), mService.getAddress().getNumber()
-                , mService.getAddress().getInteriorNumber(), mService.getAddress().getColony(), mService.getAddress().getCity(), mService.getAddress().getPostalCode().getNumber()));
+                , mService.getAddress().getInteriorNumber(), mService.getAddress().getCity(), mService.getAddress().getColony(), mService.getAddress().getPostalCode().getNumber()));
 
 
         viewHolder.getTxtServiceUser().setText(String.format(mActivity.getString(R.string.txt_service_item_user_name), mService.getUser().getFullName()));
         viewHolder.getTxtServicePhone().setText(String.format(mActivity.getString(R.string.txt_service_item_user_phone), mService.getUser().getPhone()));
-
+        viewHolder.getTxtServiceEmail().setText(String.format(mActivity.getString(R.string.txt_service_item_user_email), mService.getUser().getEmail()));
     }
 
 

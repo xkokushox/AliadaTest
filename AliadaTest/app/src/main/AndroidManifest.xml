@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AliadaTheme">
         <activity
-            android:name=".controller.splash.SplashActivity"
+            android:name=".controller.splash.ui.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

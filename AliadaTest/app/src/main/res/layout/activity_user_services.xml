@@ -27,13 +27,14 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
+                    android:id="@+id/layoutToolbarWrapper"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:weightSum="2"
-                    android:layout_toLeftOf="@+id/menuItemLogOut"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true">
+                    android:layout_alignParentStart="true"
+                    android:layout_toLeftOf="@+id/menuItemLogOut"
+                    android:orientation="vertical"
+                    android:weightSum="2">
 
                     <TextView
                         android:id="@+id/txtToolbarTitle"
@@ -44,7 +45,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_weight="1"
-                        android:text="@string/app_name" />
+                        android:text="@string/txt_session_subtitle"/>
 
 
                     <TextView
@@ -56,7 +57,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_weight="1"
-                        android:text="@string/txt_session_subtitle" />
+                        android:text="@string/app_name" />
 
 
                 </LinearLayout>
@@ -65,9 +66,9 @@
                     android:id="@+id/menuItemLogOut"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="?attr/actionBarSize"
+                    android:layout_alignParentRight="true"
                     android:padding="10dp"
-                    android:src="@drawable/vector_icon_log_out"
-                    android:layout_alignParentRight="true"/>
+                    android:src="@drawable/vector_icon_log_out" />
             </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
@@ -83,6 +84,7 @@
             android:id="@+id/listServices"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scrollbars="vertical"
             tools:listitem="@layout/list_item_services" />
 
     </android.support.v4.widget.SwipeRefreshLayout>

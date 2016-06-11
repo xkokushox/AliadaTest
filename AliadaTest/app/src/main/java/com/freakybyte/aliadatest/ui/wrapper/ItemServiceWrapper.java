@@ -24,6 +24,7 @@ public class ItemServiceWrapper extends RecyclerView.ViewHolder {
     private TextView txtServiceAddress = null;
     private TextView txtServiceUser = null;
     private TextView txtServicePhone = null;
+    private TextView txtServiceEmail = null;
 
 
     public ItemServiceWrapper(View base) {
@@ -95,5 +96,10 @@ public class ItemServiceWrapper extends RecyclerView.ViewHolder {
         if (txtServicePhone == null)
             txtServicePhone = (TextView) view.findViewById(R.id.txtServicePhone);
         return txtServicePhone;
+    }
+    public TextView getTxtServiceEmail() {
+        if (txtServiceEmail == null)
+            txtServiceEmail = (TextView) view.findViewById(R.id.txtServiceEmail);
+        return txtServiceEmail;
     }
 }

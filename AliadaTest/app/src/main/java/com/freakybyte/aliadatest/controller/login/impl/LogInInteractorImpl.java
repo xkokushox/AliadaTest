@@ -26,7 +26,7 @@ public class LogInInteractorImpl implements LogInInteractor {
 
     @Override
     public void logInInServer(final OnRequestLogInListener mListener, String id, String password) {
-        DebugUtils.logDebug(TAG, "GetItemsFromServer: Start");
+        DebugUtils.logDebug(TAG, "LogInInServer: Start");
 
         MyApiEndpointInterface apiService = RetrofitBuilder.getRetrofitBuilder().create(MyApiEndpointInterface.class);
 
@@ -68,7 +68,7 @@ public class LogInInteractorImpl implements LogInInteractor {
     @Override
     public boolean validateLogInForm(String id, String password) {
 
-        if (AndroidUtil.isValidInteger(id) && AndroidUtil.isValidField(password))
+        if (AndroidUtil.isValidField(id) && AndroidUtil.isValidField(password))
             return true;
         else {
             WidgetUtils.createShortToast(R.string.error_login_invalid_form);

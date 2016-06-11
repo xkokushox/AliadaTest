@@ -1,4 +1,4 @@
-package com.freakybyte.aliadatest.controller.splash;
+package com.freakybyte.aliadatest.controller.splash.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +24,15 @@ public class SplashActivity extends MainActivity implements SplashView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        if (!isTaskRoot()) {
+            final Intent intent = getIntent();
+            final String intentAction = intent.getAction();
+            if (intent != null && intent.hasCategory(Intent.CATEGORY_LAUNCHER) && intentAction != null && intentAction.equals(Intent.ACTION_MAIN)) {
+                finish();
+                return;
+            }
+        }
+
         mPresenter = new SplashPresenterImpl(SplashActivity.this);
 
         mPresenter.onStartTimer();
@@ -41,5 +50,11 @@ public class SplashActivity extends MainActivity implements SplashView {
         mIntentNext.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(mIntentNext);
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
     }
 }

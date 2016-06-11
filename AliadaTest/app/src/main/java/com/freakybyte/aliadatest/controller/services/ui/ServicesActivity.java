@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.freakybyte.aliadatest.R;
@@ -35,10 +36,11 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
 
     private RecyclerView mRecyclerView;
     private TextView txtEmptyView;
-    private TextView txtToolbarTitle;
+    private TextView txtToolbarSubtitle;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ImageView menuItemLogOut;
     private Toolbar mToolbar;
+    private LinearLayout mLayoutToolbarWrapper;
 
     private ProgressDialog mLoaderDialog;
     private LogOutDialog mLogOutDialog;
@@ -50,6 +52,7 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
     private LinearLayoutManager mLayoutManager;
 
     private boolean bLoading;
+    private boolean bDownloadMore;
     private int iPage;
 
 
@@ -61,13 +64,14 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
         setSupportActionBar(getToolbar());
 
         mPresenter = new ServicesPresenterImpl(this);
-        getMenuItemLogOut().setOnClickListener(ServicesActivity.this);
+        bDownloadMore = true;
 
         getTxtToolbarTitle().setText(SharedPreferencesUtil.getStringPreference(SharedPreferencesUtil.USER_NAME));
 
         getSwipeRefreshLayout().setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                bDownloadMore = true;
                 mPresenter.onRefreshServiceList();
             }
         });
@@ -78,7 +82,8 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
                 super.onScrolled(recyclerView, dx, dy);
 
                 if (dy > 0) {
-                    if (!bLoading && ((getLayoutManager().getChildCount() + getLayoutManager().findFirstVisibleItemPosition()) >= getLayoutManager().getItemCount())) {
+                    if (!bLoading && bDownloadMore && ((getLayoutManager().getChildCount() + getLayoutManager().findFirstVisibleItemPosition()) >= getLayoutManager().getItemCount())) {
+                        WidgetUtils.createShortToast(R.string.txt_toast_download);
                         bLoading = true;
                         mPresenter.getMoreItems(iPage);
                     }
@@ -93,6 +98,9 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
         iPage = 1;
 
         mPresenter.getItems();
+
+        getMenuItemLogOut().setOnClickListener(ServicesActivity.this);
+        getLayoutToolbarWrapper().setOnClickListener(ServicesActivity.this);
     }
 
     public void onLogoutPressed() {
@@ -141,15 +149,20 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
 
     @Override
     public void fillAdapter(List<ServiceItemModel> mItems) {
-        iPage++;
+        iPage = 2;
         getListAdapter().getListServices().clear();
         getListAdapter().getListServices().addAll(mItems);
+
     }
 
     @Override
     public void addNewItemsToAdapter(final List<ServiceItemModel> mItems) {
-        iPage++;
-        getListAdapter().getListServices().addAll(mItems);
+        if (mItems.size() == 0)
+            bDownloadMore = false;
+        else {
+            iPage++;
+            getListAdapter().getListServices().addAll(mItems);
+        }
     }
 
     @Override
@@ -158,7 +171,6 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
             @Override
             public void run() {
                 getTxtEmptyView().setVisibility(getListAdapter().getListServices().isEmpty() ? View.VISIBLE : View.GONE);
-                // getListServices().setVisibility(getListAdapter().getListServices().isEmpty() ? View.GONE : View.VISIBLE);
                 getListAdapter().notifyDataSetChanged();
             }
         });
@@ -184,6 +196,9 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
             case R.id.menuItemLogOut:
                 onLogoutPressed();
                 break;
+            case R.id.layoutToolbarWrapper:
+                getListServices().smoothScrollToPosition(0);
+                break;
             default:
                 DebugUtils.logError(TAG, "Unknown View:: " + v.getId());
                 break;
@@ -197,10 +212,10 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
     }
 
     private TextView getTxtToolbarTitle() {
-        if (txtToolbarTitle == null)
-            txtToolbarTitle = (TextView) findViewById(R.id.txtToolbarTitle);
+        if (txtToolbarSubtitle == null)
+            txtToolbarSubtitle = (TextView) findViewById(R.id.txtToolbarSubtitle);
 
-        return txtToolbarTitle;
+        return txtToolbarSubtitle;
     }
 
     private ImageView getMenuItemLogOut() {
@@ -246,6 +261,12 @@ public class ServicesActivity extends MainActivity implements ServicesView, View
         if (mAdapter == null)
             mAdapter = new ServiceListAdapter(ServicesActivity.this);
         return mAdapter;
+    }
+
+    private LinearLayout getLayoutToolbarWrapper() {
+        if (mLayoutToolbarWrapper == null)
+            mLayoutToolbarWrapper = (LinearLayout) findViewById(R.id.layoutToolbarWrapper);
+        return mLayoutToolbarWrapper;
     }
 
 }

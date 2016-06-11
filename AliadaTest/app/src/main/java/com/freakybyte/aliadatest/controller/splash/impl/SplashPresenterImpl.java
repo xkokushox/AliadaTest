@@ -40,6 +40,7 @@ public class SplashPresenterImpl implements SplashPresenter {
     @Override
     public void onDestroy() {
         mSplashView = null;
+        cdTimer = null;
     }
 
 }

@@ -1,9 +1,9 @@
 <resources>
-    <string name="txt_login_user">Email:</string>
+    <string name="txt_login_user">Aliada Id:</string>
     <string name="txt_login_password">Password</string>
     <string name="btn_login">INGRESO</string>
 
-    <string name="txt_progress_loader_label">Cargando....</string>
+    <string name="txt_progress_loader_label">Descargando....</string>
     <string name="txt_session_subtitle">Servicios</string>
     <string name="txt_services_empty_list">La alidada no tiene servicios actualmente, desliza hacia abajo para actualiar</string>
 
@@ -17,16 +17,19 @@
     <string name="txt_service_item_attention_instructions">Instrucciones: %s</string>
     <string name="txt_service_item_address">Dirección:</string>
     <string name="txt_service_item_direction">Calle %1$s, No %2$s, Int %3$s, Col %4$s, Ciudad %5$s, C.P %6$s</string>
-    <string name="txt_service_item_user">Usuario</string>
+    <string name="txt_service_item_user">Usuario:</string>
     <string name="txt_service_item_user_name">Nombre: %s</string>
     <string name="txt_service_item_user_phone">Teléfono: %s</string>
-    <string name="txt_service_item_service">Servicio</string>
-
+    <string name="txt_service_item_user_email">Email: %s</string>
+    <string name="txt_service_item_service">Servicio:</string>
 
     <string name="txt_dialog_yes">Si</string>
     <string name="txt_dialog_no">No</string>
     <string name="txt_dialog_title_logout">Cerrar Sesión</string>
     <string name="txt_dialog_body_logout">Estas segura de que deseas cerrar tu sesión?</string>
+
+
+    <string name="txt_toast_download">Descargando mas servicios</string>
 
 
     <string name="error_login_invalid_form">Debes completar correctamente el formulario</string>

@@ -35,7 +35,7 @@ public class ServicesInteractorImpl implements ServicesInteractor {
 
                         DebugUtils.logDebug(TAG, "GetItemsFromServer: Num Services:: " + mService.getServices().size());
 
-                        if (page == 0)
+                        if (page == 1)
                             mListener.onRequestSuccess(mService.getServices());
                         else
                             mListener.onRequestMoreData(mService.getServices());
