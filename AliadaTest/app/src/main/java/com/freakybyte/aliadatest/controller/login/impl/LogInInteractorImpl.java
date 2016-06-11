@@ -31,8 +31,15 @@ public class LogInInteractorImpl implements LogInInteractor {
         MyApiEndpointInterface apiService = RetrofitBuilder.getRetrofitBuilder().create(MyApiEndpointInterface.class);
 
         Map<String, String> params = new HashMap<>();
-        params.put("aliada_id", id);
+
+        if (AndroidUtil.isEmailValid(id))
+            params.put("email", id);
+        else
+            params.put("aliada_id", id);
+
         params.put("password", password);
+
+        DebugUtils.logDebug(TAG, "Params:: " + params.toString());
 
         Call<LogInModel> call = apiService.logInServer(params);
         call.enqueue(new Callback<LogInModel>() {
