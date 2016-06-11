@@ -16,3 +16,5 @@ Aplicación de prueba para la empresa Alidada -- [APK](http://dl.dropboxusercont
   - Se utilizó el patrón MVP (Model View Presenter) para la arquitectura de la aplicación   https://github.com/konmik/konmik.github.io/wiki/Introduction-to-Model-View-Presenter-on-Android
 
   - Todos los efectos que se agregaron pueden quitarse en caso de que el usuario tenga problemas al usarlo
+
+  - Se implemento dos tipos de "Flavors" (Stage, Production) para que puedan generarse diferentes versiones facilmente dependiendo de lo que necesitemos (Como por ejemplo apuntar a diferentes Endpoints del API)   https://developer.android.com/studio/build/build-variants.html
