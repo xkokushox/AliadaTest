@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import com.freakybyte.aliadatest.R;
 import com.freakybyte.aliadatest.controller.MainActivity;
@@ -13,16 +12,16 @@ import com.freakybyte.aliadatest.controller.login.constructors.LogInPresenter;
 import com.freakybyte.aliadatest.controller.login.constructors.LogInView;
 import com.freakybyte.aliadatest.controller.login.impl.LogInPresenterImpl;
 import com.freakybyte.aliadatest.controller.services.ui.ServicesActivity;
-import com.freakybyte.aliadatest.util.AndroidUtil;
 import com.freakybyte.aliadatest.util.DebugUtils;
 import com.freakybyte.aliadatest.util.WidgetUtils;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class LogInActivity extends MainActivity implements LogInView, View.OnClickListener {
 
     private static final String TAG = "LogInActivity";
 
-    private EditText editTextId;
-    private EditText editTextPassword;
+    private MaterialEditText editTextId;
+    private MaterialEditText editTextPassword;
     private Button btnLogIn;
 
     private ProgressDialog mLoaderDialog;
@@ -35,13 +34,6 @@ public class LogInActivity extends MainActivity implements LogInView, View.OnCli
         setContentView(R.layout.activity_log_in);
 
         getBtnLogIn().setOnClickListener(LogInActivity.this);
-
-        if (!AndroidUtil.isHoneyComb()) {
-            getEditTextId().setTextColor(getResources().getColor(R.color.black));
-            getEditTextId().setHintTextColor(getResources().getColor(R.color.black_60));
-            getEditTextPassword().setTextColor(getResources().getColor(R.color.black));
-            getEditTextPassword().setHintTextColor(getResources().getColor(R.color.black_60));
-        }
 
     }
 
@@ -99,8 +91,8 @@ public class LogInActivity extends MainActivity implements LogInView, View.OnCli
     protected void onDestroy() {
         super.onDestroy();
         getPresenter().onDestroy();
+        mPresenter.onDestroy();
         mLoaderDialog = null;
-        mPresenter = null;
     }
 
     private LogInPresenter getPresenter() {
@@ -110,16 +102,16 @@ public class LogInActivity extends MainActivity implements LogInView, View.OnCli
         return mPresenter;
     }
 
-    private EditText getEditTextId() {
+    private MaterialEditText getEditTextId() {
         if (editTextId == null)
-            editTextId = (EditText) findViewById(R.id.editTextId);
+            editTextId = (MaterialEditText) findViewById(R.id.editTextId);
 
         return editTextId;
     }
 
-    private EditText getEditTextPassword() {
+    private MaterialEditText getEditTextPassword() {
         if (editTextPassword == null)
-            editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+            editTextPassword = (MaterialEditText) findViewById(R.id.editTextPassword);
 
         return editTextPassword;
     }

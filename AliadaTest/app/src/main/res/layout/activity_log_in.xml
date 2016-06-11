@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,22 +24,31 @@
             android:layout_height="wrap_content"
             android:text="@string/txt_login_user" />
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/editTextId"
-            style="@style/TxtLogInPassword"
-            android:text="2"
+            style="@style/EditLogInPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:met_primaryColor="?colorAccent"
+            app:met_singleLineEllipsis="true"
+            app:met_textColor="@color/white"
+            app:met_textColorHint="@color/white_60"
+            app:met_underlineColor="@color/black_60" />
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/editTextPassword"
-            android:text="feliciana"
-            style="@style/TxtLogInPassword"
+            style="@style/EditLogInPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:hint="@string/txt_login_password" />
+            android:hint="@string/txt_login_password"
+            app:met_primaryColor="?colorAccent"
+            app:met_singleLineEllipsis="true"
+            app:met_textColor="@color/white"
+            app:met_textColorHint="@color/white_60"
+            app:met_underlineColor="@color/black_60" />
 
         <Button
             android:id="@+id/btnLogIn"
