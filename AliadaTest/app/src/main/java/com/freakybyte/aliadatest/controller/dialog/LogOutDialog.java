@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -183,36 +182,5 @@ public class LogOutDialog extends android.app.Dialog {
         if (buttonCancel != null)
             buttonCancel.setOnClickListener(onCancelButtonClickListener);
     }
-
-    @Override
-    public void dismiss() {
-        Animation anim = AnimationUtils.loadAnimation(context, R.anim.dialog_main_hide_amination);
-        anim.setAnimationListener(new Animation.AnimationListener() {
-
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                view.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        LogOutDialog.super.dismiss();
-                    }
-                });
-
-            }
-        });
-        Animation backAnim = AnimationUtils.loadAnimation(context, R.anim.dialog_root_hide_amin);
-
-        view.startAnimation(anim);
-        backView.startAnimation(backAnim);
-    }
-
 
 }
