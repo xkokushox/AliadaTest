@@ -12,8 +12,8 @@ public class AliadaUtil {
 
     public static String getDateFromString(String date) {
         try {
-            Date mDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse("2012-05-20T09:00:00.000Z");
-            String formattedDate = new SimpleDateFormat("dd/MM/yyyy, Ka").format(mDate);
+            Date mDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(date);
+            String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(mDate);
             return formattedDate;
         } catch (Exception ex) {
             DebugUtils.logError(TAG, ex);
